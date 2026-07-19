@@ -1,4 +1,4 @@
-🛰️ ProxyGuard — Smart Attendance System
+🛰️ GeoFace Attend — Smart Attendance System
 
 **No more proxy. No more disappearing acts.**
 

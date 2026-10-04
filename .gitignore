@@ -1,6 +1,7 @@
 .env
 myenv/
 __pycache__/
+pip_cache/
 *.pyc
 test.jpg
 test_db.py

@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+python-telegram-bot
+supabase
+opencv-python
+face_recognition
+pillow
+geopy
+streamlit
+python-dotenv
+requests
+numpy

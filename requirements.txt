@@ -5,7 +5,7 @@ supabase
 opencv-python-headless
 face-recognition
 face-recognition-models
-dlib-bin==19.24.6
+dlib-bin==20.0.1
 pillow
 geopy
 flask

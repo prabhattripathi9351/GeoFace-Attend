@@ -1,4 +1,35 @@
 import os
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
+# ---------------------------------------------------------------
+# Health server (Render ko port dikhane ke liye)
+# Yeh sabse upar hona chahiye, run_polling() se pehle
+# ---------------------------------------------------------------
+class HealthHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"GeoFace Attend bot is running")
+
+    def do_HEAD(self):
+        self.send_response(200)
+        self.end_headers()
+
+    def log_message(self, *args):
+        pass
+
+
+def start_health_server():
+    port = int(os.environ.get("PORT", 10000))
+    HTTPServer(("0.0.0.0", port), HealthHandler).serve_forever()
+
+
+threading.Thread(target=start_health_server, daemon=True).start()
+
+# ---------------------------------------------------------------
+# Baaki imports
+# ---------------------------------------------------------------
 import logging
 from datetime import datetime
 from dotenv import load_dotenv
@@ -253,25 +284,3 @@ if __name__ == "__main__":
     print("📌 Teachers: Bas group photo bhejo")
     print("=" * 50)
     app.run_polling()
-
-
-
-import os, threading
-from http.server import BaseHTTPRequestHandler, HTTPServer
-
-class HealthHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b"GeoFace Attend bot is running")
-    def do_HEAD(self):
-        self.send_response(200)
-        self.end_headers()
-    def log_message(self, *args):
-        pass
-
-def start_health_server():
-    port = int(os.environ.get("PORT", 10000))
-    HTTPServer(("0.0.0.0", port), HealthHandler).serve_forever()
-
-threading.Thread(target=start_health_server, daemon=True).start()
